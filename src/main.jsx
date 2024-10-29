@@ -5,11 +5,23 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import "./index.css";
+import Root from "./routes/Root";
+import ErrorPage from "./error-page";
+import Contact from "./routes/contact";
+import Root, { loader as rootLoader } from "./routes/Root";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <div>Hello world!</div>,
+    element: <Root />,
+    errorElement: <ErrorPage />,
+    loader: rootLoader,
+    children: [
+      {
+        path: "/contacts/:contactID",
+        element: <Contact />
+      }
+    ]
   },
 ]);
 
